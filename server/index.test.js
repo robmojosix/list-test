@@ -9,44 +9,44 @@ const initRob = () => {
 	return app;
 };
 
+const mockResponse = {
+	blog: 'https://test.com',
+	location: 'London',
+	bio: 'Developer, JavaScript',
+	public_repos: 39
+};
+
+const mockParsedResponse = {
+	blog: 'https://test.com',
+	location: 'London',
+	bio: 'Developer, JavaScript',
+	publicRepos: 39
+};
+
 describe('GET /rob', () => {
+	let app;
+
 	beforeEach(() => {
 		moxios.install();
+		app = initRob();
+
+		moxios.stubRequest(/api.github.com\/users/, {
+			status: 200,
+			response: mockResponse
+		});
 	});
+
 	afterEach(() => {
 		moxios.uninstall();
 	});
+
 	test('It should fetch robmojosix from GitHub', async () => {
-		moxios.stubRequest(/api.github.com\/users/, {
-			status: 200,
-			response: {
-				blog: 'https://test.com',
-				location: 'London',
-				bio: 'Developer, JavaScript',
-				public_repos: 39
-			}
-		});
-		const app = initRob();
 		await request(app).get('/rob');
 		expect(moxios.requests.mostRecent().url).toBe('https://api.github.com/users/robmojosix');
 	});
+
 	test('It should 200 and return a transformed version of GitHub response', async () => {
-		moxios.stubRequest(/api.github.com\/users/, {
-			status: 200,
-			response: {
-				blog: 'https://test.com',
-				location: 'London',
-				bio: 'Developer, JavaScript',
-				public_repos: 39
-			}
-		});
-		const app = initRob();
 		const res = await request(app).get('/rob');
-		expect(res.body).toEqual({
-			blog: 'https://test.com',
-			location: 'London',
-			bio: 'Developer, JavaScript',
-			publicRepos: 39
-		});
+		expect(res.body).toEqual(mockParsedResponse);
 	});
 });
