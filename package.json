@@ -1,0 +1,28 @@
+{
+	"name": "list-test",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/robmojosix/list-test.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/robmojosix/list-test/issues"
+	},
+	"homepage": "https://github.com/robmojosix/list-test#readme",
+	"dependencies": {
+		"axios": "^0.19.0",
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"jest": "^24.8.0",
+		"moxios": "^0.4.0",
+		"supertest": "^4.0.2"
+	}
+}
