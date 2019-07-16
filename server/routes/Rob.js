@@ -5,6 +5,7 @@ module.exports = (router = new Router()) => {
 	router.get('/rob', async (req, res) => {
 		const { data: userData } = await axios.get('https://api.github.com/users/robmojosix');
 		const { blog, location, bio, public_repos } = userData;
+
 		return res.json({
 			blog,
 			location,
@@ -12,5 +13,6 @@ module.exports = (router = new Router()) => {
 			publicRepos: public_repos
 		});
 	});
+
 	return router;
 };
