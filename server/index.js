@@ -1,12 +1,9 @@
 const express = require('express');
 const app = express();
 const rob = require('./routes/rob');
+const logger = require('./middleware/logger');
 
-// middleware example
-app.use((req, res, next) => {
-	console.log('Time:', Date.now());
-	next();
-});
+app.use(logger());
 
 app.use(rob());
 

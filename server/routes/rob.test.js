@@ -1,4 +1,4 @@
-const rob = require('./routes/rob');
+const rob = require('./rob');
 const express = require('express');
 const moxios = require('moxios');
 const request = require('supertest');
