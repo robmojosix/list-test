@@ -16,6 +16,10 @@ describe('Bio component', () => {
 		expect(bio.type()).toEqual(List);
 	});
 
+	it('should call fetch with correct url', () => {
+		expect(mockFetch).toHaveBeenCalledWith('http://localhost:3000/rob');
+	});
+
 	it('should pass data to the List component', () => {
 		expect(bio.prop('data')).toEqual(data);
 	});
